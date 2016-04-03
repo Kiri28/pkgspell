@@ -7,7 +7,23 @@ check_spell <- function(path) {
                         Word = character(0), stringsAsFactors = F)
 
     #---- check DESCRIPTION file
+    if(file.exists(paste0(path, "DESCRIPTION"))) {
+        typos <- rbind(typos, check_descr(paste0(path, "DESCRIPTION")))
+    } else {
+        warning("Fail to find DESCRIPTION file. This part is skip.")
+    }
 
+    #---- check objects documentation
+    if(dir.exists(paste0(path, "man/"))) {
+        files <- list.files(path = paste0(path, "man/"), pattern = ".Rd")
+        if(length(files) != 0) {
+            typos <- 1 # here go over all .rd files and find misspells
+        } else {
+            messege("There are no object documentation files.")
+        }
+    } else {
+        warning("Fail to find man/ directory. This part is skip.")
+    }
 
     return(typos)
 }
