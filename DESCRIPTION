@@ -1,10 +1,15 @@
 Package: pkgspell
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1
+Title: Spell checker for R packeges development
+Version: 0.1.0.9000
 Date: 2016-04-03
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Iegor", "Rudnytskyi", email = "iegor.rudnytskyi@gmail.com",
+  role = c("aut", "cre"))
+Description: A tool, which helps to automatically check all documentations'
+    files of a developing package on typos and spelling errors.
+License: GPL (>= 2)
+URL: http://github.com/pkgspell
+BugReports: https://github.com/irudnyts/pkgspell/issues
 LazyData: TRUE
+Imports:
+    hunspell (>= 1.2)
