@@ -85,12 +85,11 @@ check_rd <- function(pkg_dir, sections = c("title", "desc", "details", "params",
         source_file <- substr(readLines(full_path)[2], start = 32,
                            stop = nchar(readLines(full_path)[2]))
         text <- Rd2roxygen::parse_file(path = full_path)
-        browser()
         for(sec in sections) {
             if(is.null(text[[sec]])) {
                 message(paste("File", file, "does not contain section", sec))
             } else {
-                bad_words <- hunspell::hunspell(text[[sec]])[[1]]
+                bad_words <- unlist(hunspell::hunspell(text[[sec]]))
                 for(word in bad_words) {
                     text_source <- readLines(paste0(pkg_dir, source_file))
                     lines <- grep(word, text_source)
