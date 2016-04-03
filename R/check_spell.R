@@ -1,23 +1,29 @@
-check_spell <- function(path) {
+check_spell <- function(dir) {
 
-    if(!dir.exists(path)) {
-        stop(paste("Directory", path, "does not exist."))
+    if(missing(dir)) {
+        dir <- getwd()
+    }
+
+    if(!dir.exists(dir)) {
+        stop(paste("Directory", dir, "does not exist."))
     }
     typos <- data.frame(File = character(0), Line = integer(),
                         Word = character(0), stringsAsFactors = F)
 
     #---- check DESCRIPTION file
-    if(file.exists(paste0(path, "DESCRIPTION"))) {
-        typos <- rbind(typos, check_descr(paste0(path, "DESCRIPTION")))
+    if(file.exists(paste0(dir, "DESCRIPTION"))) {
+        typos <- rbind(typos, check_descr(paste0(dir, "DESCRIPTION")))
     } else {
         warning("Fail to find DESCRIPTION file. This part is skip.")
     }
 
     #---- check objects documentation
-    if(dir.exists(paste0(path, "man/"))) {
-        files <- list.files(path = paste0(path, "man/"), pattern = ".Rd")
+    if(dir.exists(paste0(dir, "man/"))) {
+        files <- list.files(dir = paste0(dir, "man/"), pattern = ".Rd")
         if(length(files) != 0) {
-            typos <- 1 # here go over all .rd files and find misspells
+            for(file in files) {
+                typos <- rbind(typos, check_rd(paste0(dir, "man/", file)))
+            }
         } else {
             messege("There are no object documentation files.")
         }
@@ -53,4 +59,11 @@ check_descr <- function(dfile) {
         }
     }
     return(typos)
+}
+
+check_rd <- function(rdfile) {
+    if(!file.exists(rdfile)) {
+        stop(paste("File", rdfile, "does not exist."))
+    }
+    text <- readLines(rdfile)
 }
