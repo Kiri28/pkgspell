@@ -1,6 +1,6 @@
 Package: pkgspell
 Type: Package
-Title: Spell checker for R packeges development
+Title: Spell checker for R packages development
 Version: 0.1.0.9000
 Date: 2016-04-03
 Authors@R: person("Iegor", "Rudnytskyi", email = "iegor.rudnytskyi@gmail.com",
