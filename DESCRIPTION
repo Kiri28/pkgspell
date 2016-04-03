@@ -1,7 +1,7 @@
 Package: pkgspell
 Type: Package
 Title: Spell checker for R packages development
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Date: 2016-04-03
 Authors@R: person("Iegor", "Rudnytskyi", email = "iegor.rudnytskyi@gmail.com",
   role = c("aut", "cre"))
@@ -11,5 +11,7 @@ License: GPL (>= 2)
 URL: http://github.com/pkgspell
 BugReports: https://github.com/irudnyts/pkgspell/issues
 LazyData: TRUE
+Depends:
+    R (>= 3.2.1)
 Imports:
     hunspell (>= 1.2)
