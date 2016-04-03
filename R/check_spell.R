@@ -1,5 +1,6 @@
+#' @export
 check_pkg <- function(pkg_dir, sections = c("title", "desc", "details",
-                                        "arguments", "params", "value")) {
+                                            "params", "value")) {
 
     if(missing(pkg_dir)) {
         pkg_dir <- getwd()
@@ -12,18 +13,17 @@ check_pkg <- function(pkg_dir, sections = c("title", "desc", "details",
                         Word = character(0), stringsAsFactors = F)
 
     #---- check DESCRIPTION file
-    if(file.exists(paste0(pkg_dir, "DESCRIPTION"))) {
+    if(file.exists(paste0(pkg_dir, "/DESCRIPTION"))) {
         typos <- rbind(typos, check_desc(pkg_dir = pkg_dir))
     } else {
         warning("Fail to find DESCRIPTION file. This part is skip.")
     }
 
     #---- check objects documentation
-    if(dir.exists(paste0(pkg_dir, "man/")) &&
-       length(list.files(path = paste0(pkg_dir, "man/"),
+    if(dir.exists(paste0(pkg_dir, "/man")) &&
+       length(list.files(path = paste0(pkg_dir, "/man"),
                          pattern = ".Rd")) > 0) {
-        typos <- rbind(typos, check_rd(paste0(pkg_dir, "man/", file),
-                                       sections = sections))
+        typos <- rbind(typos, check_rd(pkg_dir, sections = sections))
     } else {
         warning(paste("Fail to find man/ directory, or there are no object",
                 "documentation files. This part is skip."))
@@ -34,8 +34,8 @@ check_pkg <- function(pkg_dir, sections = c("title", "desc", "details",
 
 # NOTE: DESCRIPTION has to have Title: and Description:
 # each new line in Description: filed should be intended by 4 spaces
+#' @export
 check_desc <- function(pkg_dir) {
-    browser()
     if(missing(pkg_dir)) {
         pkg_dir <- getwd()
     }
@@ -65,8 +65,9 @@ check_desc <- function(pkg_dir) {
 }
 
 # sections namme as in Rd2roxygen::parse_file()
-check_rd <- function(pkg_dir, sections = c("title", "desc", "details",
-                                          "arguments", "params", "value")) {
+#' @export
+check_rd <- function(pkg_dir, sections = c("title", "desc", "details", "params",
+                                           "value")) {
     if(missing(pkg_dir)) {
         pkg_dir <- getwd()
     }
@@ -84,6 +85,7 @@ check_rd <- function(pkg_dir, sections = c("title", "desc", "details",
         source_file <- substr(readLines(full_path)[2], start = 32,
                            stop = nchar(readLines(full_path)[2]))
         text <- Rd2roxygen::parse_file(path = full_path)
+        browser()
         for(sec in sections) {
             if(is.null(text[[sec]])) {
                 message(paste("File", file, "does not contain section", sec))
@@ -106,7 +108,6 @@ check_rd <- function(pkg_dir, sections = c("title", "desc", "details",
             }
         }
     }
-    browser()
     typos <- typos[duplicated(typos), ]
     return(typos)
 }
