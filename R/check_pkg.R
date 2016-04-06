@@ -6,7 +6,7 @@
 #'
 #' The function's argument \code{pkg_dir} is the location of the package
 #' directory. By default it is the current working directory. The function runs
-#' two functions inside: \code{check_desc} and \code{check_dr}. If some
+#' two functions inside: \code{check_desc} and \code{check_rd}. If some
 #' files are missing, the function throw a warning and continue executing the
 #' rest of the code. Checks are done with a help of \code{hunspell} package.
 #'
