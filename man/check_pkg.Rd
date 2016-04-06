@@ -9,8 +9,8 @@ check_pkg(pkg_dir = getwd(), sections = c("title", "desc", "details",
 }
 \arguments{
 \item{pkg_dir}{a character vector of length one, specifying the location of a
-package. The default value is the working directory (\code{getwd()}). Missing
-value will be ignored.}
+package. The default value is the working directory (\code{\link{getwd}}).
+Missing value will be ignored.}
 }
 \value{
 A data.frame with columns: File, Line, Word. The File is either
@@ -18,18 +18,18 @@ DESCRIPTION file, or the .R file, which generated .Rd file. Line is the
 number of the line, where the error appears, and Word is the word with error.
 }
 \description{
-\code{check_pkg()} checks a package for typos and spelling errors, including
+\code{check_pkg} checks a package for typos and spelling errors, including
 DESCRIPTION file (both Title: and Description:), as well as all .Rd files in
 folder \code{/man}.
 }
 \details{
 The function's argument \code{pkg_dir} is the location of the package
 directory. By default it is the current working directory. The function runs
-two functions inside: \code{check_desc()} and \code{check_dr()}. If some
+two functions inside: \code{check_desc} and \code{check_dr}. If some
 files are missing, the function throw a warning and continue executing the
 rest of the code. Checks are done with a help of \code{hunspell} package.
 }
 \seealso{
-\code{\link{check_desc()}}, \code{\link{check_rd()}}
+\code{\link{check_desc}}, \code{\link{check_rd}}
 }
 

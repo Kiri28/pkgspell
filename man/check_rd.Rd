@@ -9,9 +9,9 @@ check_rd(pkg_dir = getwd(), sections = c("title", "desc", "details",
 }
 \arguments{
 \item{pkg_dir}{a character vector of length one, specifying the location of a
-package. The default value is the working directory (\code{getwd()}). Missing
-value will be ignored. The folder must contain a folder \code{/man} and
-\code{/R}.}
+package. The default value is the working directory (\code{\link{getwd}}).
+Missing value will be ignored. The folder must contain a folder \code{/man}
+and \code{/R}.}
 }
 \value{
 A data.frame with columns: File, Line, Word. The File is .R file,
@@ -27,13 +27,13 @@ This function goes through each file in folder \code{/man}, which has
 extenssion .Rd and checks for a wrong spelling. Only limited set of sections
 supported: title, description, details, parameters, and return. If the
 section is missing, the function throws an massage. Custom sections are not
-supported, due to limitations by package \code{Rd2roxygen}. The function uses
+supported, due to limitations of package \code{Rd2roxygen}. The function uses
 \code{hunspell} package to find typos. Instead of indicating the location of
 the typo in .Rd file, the function seeks for the .R file in folder \code{/R},
 which generated the .Rd file, and returns the line of the roxygen2 comment,
 which generates such an error.
 }
 \seealso{
-\code{\link{check_pkg()}}, \code{\link{check_desc()}}
+\code{\link{check_pkg}}, \code{\link{check_desc}}
 }
 
