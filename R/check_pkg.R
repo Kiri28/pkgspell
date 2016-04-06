@@ -20,8 +20,7 @@
 #'
 #' @seealso \code{\link{check_desc}}, \code{\link{check_rd}}
 #' @export
-check_pkg <- function(pkg_dir = getwd(), sections = c("title", "desc", "details",
-                                            "params", "value")) {
+check_pkg <- function(pkg_dir = getwd()) {
 
     if(!dir.exists(pkg_dir)) {
         stop(paste("Directory", pkg_dir, "does not exist."))
@@ -40,7 +39,7 @@ check_pkg <- function(pkg_dir = getwd(), sections = c("title", "desc", "details"
     if(dir.exists(paste0(pkg_dir, "/man")) &&
        length(list.files(path = paste0(pkg_dir, "/man"),
                          pattern = ".Rd")) > 0) {
-        typos <- rbind(typos, check_rd(pkg_dir, sections = sections))
+        typos <- rbind(typos, check_rd(pkg_dir))
     } else {
         warning(paste("Fail to find man/ directory, or there are no object",
                       "documentation files. This part is skip."))

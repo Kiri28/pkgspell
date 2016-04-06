@@ -4,8 +4,7 @@
 \alias{check_rd}
 \title{Check each .Rd file on spelling errors.}
 \usage{
-check_rd(pkg_dir = getwd(), sections = c("title", "desc", "details",
-  "params", "value"))
+check_rd(pkg_dir = getwd())
 }
 \arguments{
 \item{pkg_dir}{a character vector of length one, specifying the location of a
@@ -24,7 +23,7 @@ and spelling errors.
 }
 \details{
 This function goes through each file in folder \code{/man}, which has
-extenssion .Rd and checks for a wrong spelling. Only limited set of sections
+extension .Rd and checks for a wrong spelling. Only limited set of sections
 supported: title, description, details, parameters, and return. If the
 section is missing, the function throws an massage. Custom sections are not
 supported, due to limitations of package \code{Rd2roxygen}. The function uses

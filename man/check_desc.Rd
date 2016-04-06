@@ -18,11 +18,11 @@ the word with error.
 }
 \description{
 The function checks a package's DESCRIPTION file on spelling errors,
-particularely Title: and Description: sections.
+particularly Title: and Description: sections.
 }
 \details{
 This function looks for the DESCRIPTION file in \code{pkg_dir} directory,
-reads this file, and checks Title: and Discription: sections in typos with a
+reads this file, and checks Title: and Description: sections in typos with a
 help of \code{hunspell} package.
 
 \strong{Note:} Each line in section Description: must be intended by 4 spaces.

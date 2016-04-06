@@ -4,7 +4,7 @@
 #' and spelling errors.
 #'
 #' This function goes through each file in folder \code{/man}, which has
-#' extenssion .Rd and checks for a wrong spelling. Only limited set of sections
+#' extension .Rd and checks for a wrong spelling. Only limited set of sections
 #' supported: title, description, details, parameters, and return. If the
 #' section is missing, the function throws an massage. Custom sections are not
 #' supported, due to limitations of package \code{Rd2roxygen}. The function uses
@@ -24,8 +24,10 @@
 #'
 #' @seealso \code{\link{check_pkg}}, \code{\link{check_desc}}
 #' @export
-check_rd <- function(pkg_dir = getwd(), sections = c("title", "desc", "details", "params",
-                                           "value")) {
+check_rd <- function(pkg_dir = getwd()) {
+
+    sections = c("title", "desc", "details", "params",
+                 "value")
 
     if(!dir.exists(paste0(pkg_dir, "/man")) ||
        length(list.files(path = paste0(pkg_dir, "/man"),
@@ -46,7 +48,7 @@ check_rd <- function(pkg_dir = getwd(), sections = c("title", "desc", "details",
             } else {
                 bad_words <- unlist(hunspell::hunspell(text[[sec]]))
                 for(word in bad_words) {
-                    text_source <- readLines(paste0(pkg_dir, source_file))
+                    text_source <- readLines(paste0(pkg_dir, "/", source_file))
                     lines <- grep(word, text_source)
                     for(i in lines) {
                         if(substr(text_source[i], start = 1,
@@ -62,6 +64,6 @@ check_rd <- function(pkg_dir = getwd(), sections = c("title", "desc", "details",
             }
         }
     }
-    typos <- typos[duplicated(typos), ]
+    typos <- typos[!duplicated(typos), ]
     return(typos)
 }

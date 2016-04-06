@@ -4,8 +4,7 @@
 \alias{check_pkg}
 \title{Check a package documentation and DESCRIPTION file on spelling errors.}
 \usage{
-check_pkg(pkg_dir = getwd(), sections = c("title", "desc", "details",
-  "params", "value"))
+check_pkg(pkg_dir = getwd())
 }
 \arguments{
 \item{pkg_dir}{a character vector of length one, specifying the location of a
