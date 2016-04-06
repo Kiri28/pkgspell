@@ -1,10 +1,8 @@
 # NOTE: DESCRIPTION has to have Title: and Description:
 # each new line in Description: filed should be intended by 4 spaces
 #' @export
-check_desc <- function(pkg_dir) {
-    if(missing(pkg_dir)) {
-        pkg_dir <- getwd()
-    }
+check_desc <- function(pkg_dir = getwd()) {
+
     file <- paste0(pkg_dir, "/DESCRIPTION")
     if(!file.exists(file)) {
         stop("File DESCRIPTION does not exist.")

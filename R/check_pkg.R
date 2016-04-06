@@ -1,10 +1,6 @@
 #' @export
-check_pkg <- function(pkg_dir, sections = c("title", "desc", "details",
+check_pkg <- function(pkg_dir = getwd(), sections = c("title", "desc", "details",
                                             "params", "value")) {
-
-    if(missing(pkg_dir)) {
-        pkg_dir <- getwd()
-    }
 
     if(!dir.exists(pkg_dir)) {
         stop(paste("Directory", pkg_dir, "does not exist."))

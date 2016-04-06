@@ -1,10 +1,7 @@
 # sections namme as in Rd2roxygen::parse_file()
 #' @export
-check_rd <- function(pkg_dir, sections = c("title", "desc", "details", "params",
+check_rd <- function(pkg_dir = getwd(), sections = c("title", "desc", "details", "params",
                                            "value")) {
-    if(missing(pkg_dir)) {
-        pkg_dir <- getwd()
-    }
 
     if(!dir.exists(paste0(pkg_dir, "/man")) ||
        length(list.files(path = paste0(pkg_dir, "/man"),
