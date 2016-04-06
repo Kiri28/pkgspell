@@ -1,5 +1,23 @@
-# NOTE: DESCRIPTION has to have Title: and Description:
-# each new line in Description: filed should be intended by 4 spaces
+#' Check a DESCRIPTION file on spelling errors.
+#'
+#' The function checks a package's DESCRIPTION file on spelling errors,
+#' particularely Title: and Description: sections.
+#'
+#' This function looks for the DESCRIPTION file in \code{pkg_dir} directory,
+#' reads this file, and checks Title: and Discription: sections in typos with a
+#' help of \code{hunspell} package.
+#'
+#' \strong{Note:}Each line in section Description: must be intended by 4 spaces.
+#'
+#' @param pkg_dir a character vector of length one, specifying the location of a
+#' package. The default value is the working directory (\code{getwd()}). Missing
+#' value will be ignored. The folder must contain file DESCRIPTION.
+#'
+#' @return A data.frame with columns: File, Line, Word. The File is DESCRIPTION
+#' file; Line is the number of the line, where the error appears, and Word is
+#' the word with error.
+#'
+#' @seealso \code{\link{check_pkg()}}, \code{\link{check_rd()}}
 #' @export
 check_desc <- function(pkg_dir = getwd()) {
 
